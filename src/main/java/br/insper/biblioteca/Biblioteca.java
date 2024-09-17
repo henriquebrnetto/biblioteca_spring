@@ -16,6 +16,8 @@ public class Biblioteca {
         usuarios.add(usuario);
     }
 
+    public void adicionaLivro(Livro livro) { livros.add(livro); }
+
     public ArrayList<Livro> getLivros() {
         return livros;
     }
