@@ -9,36 +9,17 @@ public class LivroService {
 
     private ArrayList<Livro> livros =  new ArrayList<>();
 
-    public void cadastrarLivro(String nome, String autor, Boolean disponivel,
-                               Biblioteca biblioteca) {
-
-        Livro livro = new Livro();
-        livro.setNome(nome);
-        livro.setAutor(autor);
-        livro.setDisponivel(disponivel);
-        livro.setBiblioteca(biblioteca);
+    public void cadastrarLivro(Livro livro) {
 
         livros.add(livro);
-        biblioteca.adicionaLivro(livro);
+        livro.getBiblioteca().adicionaLivro(livro);
     }
 
-    public void listarLivros() {
-        for (Livro livro : livros) {
-            System.out.println("Nome: " + livro.getNome());
-            System.out.println("Autor: " + livro.getAutor());
-            System.out.println("Biblioteca: " + livro.getBiblioteca().getNome());
-            System.out.println("Emprestimos: " + livro.getEmprestimos());
-            System.out.println("Reservas: " + livro.getReservas());
-        }
+    public ArrayList<Livro> listarLivros() {
+        return livros;
     }
 
     public Livro buscarLivro(String nomeLivro) {
-
-        // return livros
-        //         .stream()
-        //         .filter(b -> b.getNome().equals(nomeLivro))
-        //         .findFirst()
-        //         .get();
 
         for (Livro livro : livros) {
             if (livro.getNome().equals(nomeLivro)) {
@@ -47,5 +28,11 @@ public class LivroService {
         }
         return null;
     }
+
+    public void excluirLivro(String nome) {
+        livros
+                .removeIf(livro -> livro.getNome().equals(nome));
+    }
+
 
 }

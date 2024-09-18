@@ -2,10 +2,9 @@ package br.insper.biblioteca;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 public class UsuarioController {
@@ -18,7 +17,7 @@ public class UsuarioController {
 
     @PostMapping("/usuario")
     @ResponseStatus(HttpStatus.CREATED)
-    public String cadastrarUsuario(@RequestBody Usuario usuario) {
+    public String postUsuario(@RequestBody Usuario usuario) {
 
         Biblioteca biblioteca = bibliotecaService
                 .buscarBiblioteca(usuario.getBiblioteca().getNome());
@@ -28,10 +27,22 @@ public class UsuarioController {
         }
 
         usuario.setBiblioteca(biblioteca);
-        biblioteca.getUsuarios().add(usuario);
+        biblioteca.adicionaUsuario(usuario);
 
         usuarioService.cadastrarUsuario(usuario);
         return "Usuário cadastrado com sucesso";
+    }
+
+    @GetMapping("/usuario")
+    public ArrayList<Usuario> listaUsuarios() {
+        return usuarioService.listarUsuarios();
+    }
+
+    @DeleteMapping("/usuario/{nome}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void excluirUsuario(@PathVariable String nome) {
+
+        usuarioService.excluirUsuario(nome);
     }
 
 }

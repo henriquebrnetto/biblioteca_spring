@@ -7,19 +7,8 @@ import java.util.ArrayList;
 @Service
 public class BibliotecaService {
 
-  /*  private BibliotecaService() {
-    }
-
-    private static BibliotecaService bibliotecaService = null;
-
-    public static BibliotecaService getInstance() {
-        if (bibliotecaService == null) {
-            bibliotecaService = new BibliotecaService();
-        }
-        return bibliotecaService;
-    }*/
-
     private ArrayList<Biblioteca> bibliotecas = new ArrayList<>();
+
     public void cadastrarBiblioteca(Biblioteca biblioteca) {
         bibliotecas.add(biblioteca);
     }
@@ -38,12 +27,6 @@ public class BibliotecaService {
     }
 
     public Biblioteca buscarBiblioteca(String nomeBiblioteca) {
-
-       // return bibliotecas
-       //         .stream()
-       //         .filter(b -> b.getNome().equals(nomeBiblioteca))
-       //         .findFirst()
-       //         .get();
 
         for (Biblioteca biblioteca : bibliotecas) {
             if (biblioteca.getNome().equals(nomeBiblioteca)) {

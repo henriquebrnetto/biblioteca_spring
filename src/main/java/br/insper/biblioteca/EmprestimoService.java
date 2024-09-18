@@ -1,39 +1,28 @@
 package br.insper.biblioteca;
 
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
 @Service
 public class EmprestimoService {
 
-    private ArrayList<Emprestimo> emprestimos =  new ArrayList<>();
+    private ArrayList<Emprestimo> emprestimos = new ArrayList<>();
 
-    public void cadastrarEmprestimo(String codigo, String status, LocalDateTime dataDevolucao,
-                                    Usuario usuario, Livro livro) {
+    public void cadastrarEmprestimo(Emprestimo emprestimo) {
 
-        Emprestimo emprestimo = new Emprestimo();
-
-        emprestimo.setCodigo(codigo);
-        emprestimo.setStatus(status);
-        emprestimo.setDataDevolucao(dataDevolucao);
-        emprestimo.setUsuario(usuario);
-        emprestimo.setLivro(livro);
-
+        emprestimo.getUsuario().adicionaEmprestimo(emprestimo);
+        emprestimo.getLivro().adicionaEmprestimo(emprestimo);
+        emprestimo.getLivro().setDisponivel(false);
         emprestimos.add(emprestimo);
-        usuario.adicionaEmprestimo(emprestimo);
-        livro.adicionaEmprestimo(emprestimo);
-        livro.setDisponivel(false);
     }
 
-    public void listarEmprestimo() {
-        for (Emprestimo emprestimo : emprestimos) {
-            System.out.println("Livro: " + emprestimo.getLivro());
-            System.out.println("Usuário: " + emprestimo.getUsuario().getNome());
-            System.out.println("Status: " + emprestimo.getStatus());
-        }
+    public ArrayList<Emprestimo> listarEmprestimo() {
+        return emprestimos;
     }
 
+    public void excluirEmprestimo(String codigo) {
+        emprestimos
+                .removeIf(emprestimo -> emprestimo.getCodigo().equals(codigo));
+    }
 }

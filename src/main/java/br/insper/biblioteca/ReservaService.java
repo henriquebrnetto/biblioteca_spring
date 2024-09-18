@@ -10,26 +10,21 @@ public class ReservaService {
 
     private ArrayList<Reserva> reservas =  new ArrayList<>();
 
-    public void cadastrarReserva(String codigo, LocalDateTime data, Usuario usuario,
-                                 Livro livro) {
-
-        Reserva reserva = new Reserva();
-        reserva.setCodigo(codigo);
-        reserva.setLocalDateTime(data);
-        reserva.setUsuario(usuario);
-        reserva.setLivro(livro);
+    public void cadastrarReserva(Reserva reserva) {
 
         reservas.add(reserva);
-        usuario.adicionaReserva(reserva);
-        livro.adicionaReserva(reserva);
+        reserva.getUsuario().adicionaReserva(reserva);
+        reserva.getLivro().adicionaReserva(reserva);
+
     }
 
-    public void listarReserva() {
-        for (Reserva reserva : reservas) {
-            System.out.println("Livro: " + reserva.getLivro());
-            System.out.println("Usuário: " + reserva.getUsuario().getNome());
-            System.out.println("Data: " + reserva.getLocalDateTime().toString());
+    public ArrayList<Reserva> listarReserva() {
+        return reservas;
         }
+
+    public void excluirReserva(String codigo) {
+        reservas
+                .removeIf(biblioteca -> biblioteca.getCodigo().equals(codigo));
     }
 
 }

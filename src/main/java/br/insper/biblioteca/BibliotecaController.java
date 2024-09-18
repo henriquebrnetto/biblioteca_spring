@@ -28,6 +28,7 @@ public class BibliotecaController {
     @DeleteMapping("/biblioteca/{nome}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluirBiblioteca(@PathVariable String nome) {
+
         bibliotecaService.excluirBiblioteca(nome);
     }
 
