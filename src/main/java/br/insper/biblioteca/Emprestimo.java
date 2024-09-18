@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Emprestimo {
     private String codigo;
     private String status;
-    private LocalDateTime dataDevolucao;
+    private String dataDevolucao;
     private Usuario usuario;
     private Livro livro;
 
@@ -41,11 +41,11 @@ public class Emprestimo {
         this.status = status;
     }
 
-    public LocalDateTime getDataDevolucao() {
+    public String getDataDevolucao() {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(LocalDateTime dataDevolucao) {
+    public void setDataDevolucao(String dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 }

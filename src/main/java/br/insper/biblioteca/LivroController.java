@@ -18,7 +18,7 @@ public class LivroController {
 
     @PostMapping("/livro")
     @ResponseStatus(HttpStatus.CREATED)
-    public String postBiblioteca(@RequestBody Livro livro) {
+    public String postLivro(@RequestBody Livro livro) {
 
         Biblioteca biblioteca = bibliotecaService
                 .buscarBiblioteca(livro.getBiblioteca().getNome());
@@ -31,11 +31,11 @@ public class LivroController {
         biblioteca.adicionaLivro(livro);
 
         livroService.cadastrarLivro(livro);
-        return "Biblioteca cadastrada com sucesso";
+        return "Livro cadastrado com sucesso";
     }
 
     @GetMapping("/livro")
-    public ArrayList<Livro> listaBibliotecas() {
+    public ArrayList<Livro> listaLivros() {
         return livroService.listarLivros();
     }
 

@@ -9,7 +9,11 @@ public class Usuario {
     private String endereco;
     private String email;
     private Biblioteca biblioteca;
+
+    @JsonIgnore
     private ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+
+    @JsonIgnore
     private ArrayList<Reserva> reservas = new ArrayList<>();
 
     public void adicionaReserva(Reserva reserva) {

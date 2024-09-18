@@ -1,5 +1,7 @@
 package br.insper.biblioteca;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 public class Livro {
@@ -8,7 +10,10 @@ public class Livro {
     private Boolean disponivel;
     private Biblioteca biblioteca;
 
+    @JsonIgnore
     private ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+
+    @JsonIgnore
     private ArrayList<Reserva> reservas = new ArrayList<>();
 
     public void adicionaReserva(Reserva reserva) {

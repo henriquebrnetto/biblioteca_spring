@@ -10,6 +10,7 @@ public class Biblioteca {
     private String endereco;
     @JsonIgnore
     private ArrayList<Usuario> usuarios = new ArrayList<>();
+    @JsonIgnore
     private ArrayList<Livro> livros = new ArrayList<>();
 
     public void adicionaUsuario(Usuario usuario) {

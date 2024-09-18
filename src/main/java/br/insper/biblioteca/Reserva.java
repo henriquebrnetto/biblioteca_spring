@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Reserva {
     private String codigo;
-    private LocalDateTime localDateTime;
+    private String localDateTime;
 
     private Usuario usuario;
     private Livro livro;
@@ -33,11 +33,11 @@ public class Reserva {
         this.codigo = codigo;
     }
 
-    public LocalDateTime getLocalDateTime() {
+    public String getLocalDateTime() {
         return localDateTime;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
+    public void setLocalDateTime(String localDateTime) {
         this.localDateTime = localDateTime;
     }
 }
